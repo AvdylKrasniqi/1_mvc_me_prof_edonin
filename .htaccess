@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !controllers/
+RewriteRule (.*) /controllers/$1 [L]
+
+php_value auto_prepend_file "C:/xampp/htdocs/prepend.php"
+php_value auto_append_file "C:/xampp/htdocs/append.php"
+
+ErrorDocument 403 /error.php?code=403
+ErrorDocument 404 /error.php?code=404
+ErrorDocument 500 /error.php?code=500

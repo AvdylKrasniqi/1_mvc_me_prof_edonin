@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS Users (
+  user_id INT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Books (
+  book_id INT PRIMARY KEY,
+  user_id INT,
+  name VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
