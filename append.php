@@ -14,9 +14,11 @@ if (function_exists($handler)) {
   try {
     return di_instantiate($handler);
   } catch (Exception $e) {
-    return view('error', [
-      'code' => 500
-    ]);
+    $logger = di_resolve('logger');
+    $logger->error($e);
+    die();
+  } finally {
+    di_cleanup();
   }
 }
 

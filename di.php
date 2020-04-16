@@ -77,4 +77,17 @@ function di_is_registered($name) {
   return isset($__services[$name]);
 }
 
+function di_cleanup() {
+  global $__serviceCache;
+  foreach ($__serviceCache as $key => $service) {
+    if (method_exists($service, 'cleanup')) {
+      try {
+        $service->cleanup();
+      } catch (Exception $e) {
+        // cleanup error...
+      }
+    }
+  }
+}
+
 abstract class Service { }
